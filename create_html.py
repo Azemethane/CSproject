@@ -13,7 +13,6 @@ class paragraph:
 
 def write_html(Title,style_temp,paras,site_name,links):
     """
-    This function creates an html file and proceeds to write
     :param Title: The title of the site that is used to create the main heading
     :param style_temp: This is the string that holds the completed style template
     :param paras: A list of paragraphs that will be coded into the site, each paragraph contains a heading,text(body),
@@ -21,17 +20,21 @@ def write_html(Title,style_temp,paras,site_name,links):
     :param site_name: This is the site name
     :param links: This is a dictionary in which the keys are the site names, and the values are lists with
                   [0] being the name of the sites source file and [1] being the list of paragraphs for that site
-    :return:
+    :return: none
     """
     final_html = open(site_name+".html", "a+")
-    final_html.write("<!doctype html>\n")
+    final_html.write("<!DOCTYPE html>\n")
     final_html.write("<html>\n")
     final_html.write("<head>\n")
+    final_html.write("<title>\n")
+    final_html.write(Title+"\n")
+    final_html.write("</title>\n")
     final_html.write(style_temp)
     final_html.write("</head>\n")
-    final_html.write(make_title(Title))
     final_html.write("<body>\n")
-    #This if statement checks the length of the links list
+    final_html.write(make_title(Title))
+    final_html.write("<hr/>\n")
+    #This if statement checks the length of the links dict
     #and if its greater than zero it will add links to the other sites(as well as itself)
     if len(links)>0:
         final_html.write("<p align=\"center\">\n")

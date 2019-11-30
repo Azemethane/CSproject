@@ -1,3 +1,8 @@
+"""
+Nicholas Faber
+11/29/2019
+
+"""
 import sys
 import questions
 import create_txt
@@ -5,22 +10,31 @@ import create_html
 from dataclasses import dataclass
 PARAS=[]
 SITES={}
+#This dataclass is used for both wizard and website mode, it is used to represent each paragraph of the sites
 @dataclass
 class paragraph:
     heading:str
     txt:str
     img:list
 def wizard_mode():
-    cont="yes"
+    """
+    This function goes through the process of wizard mode, asking and creating the paragraphs for the site
+    :return:
+    """
+    cont=""
+    #This while loop continues as long as the user wishes to create more paragraphs
     while cont=="" or cont=="yes":
         heading=input("Title of your paragraph: ")
         txt=input("Content of your paragraph (single line)")
         img_chk=input("Do you want to add an image?")
         new_para=paragraph(heading,txt,[])
+        #If the user wishes to add images this loop will start and add the images requested by the user to the image
+        #list of the current paragraph
         while img_chk=="" or img_chk=="yes":
             new_img=input("Image file name:")
             new_para.img.append(new_img)
             img_chk=input("Do you want to add another image?")
+        #The completed paragraph is added to the list
         PARAS.append(new_para)
         cont=input("Do you want to add another paragraph to your website?")
 
@@ -73,6 +87,6 @@ def main():
         head_color = questions.head_style()
         style_temp = create_txt.make_style(back_color, head_color, font, para_color)
         wizard_mode()
-        create_html.write_html(title_name, style_temp, PARAS,"index")
+        create_html.write_html(title_name, style_temp, PARAS,"index",[])
 
 main()

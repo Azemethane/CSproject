@@ -34,7 +34,7 @@ def make_img(txt):
     :param txt: The file name of the image
     :return:
     """
-    return "<img src=\""+txt+"\">\n"
+    return "<img src=\""+txt+"\" class=\"center\">\n"
 
 def make_style(Back_color,Head_col,Font_style,Font_color):
     """
