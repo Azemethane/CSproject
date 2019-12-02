@@ -34,7 +34,12 @@ def make_img(txt):
     :param txt: The file name of the image
     :return:
     """
-    return "<img src=\""+txt+"\" class=\"center\">\n"
+    split_txt=txt.split(" ")
+    #An if statement is used here to check if there is a resize request and if so it adds the width command
+    if len(split_txt)>2:
+        return "<img src=\""+split_txt[1]+"\" width=\""+split_txt[2]+"\" class=\"center\">\n"
+    else:
+        return "<img src=\""+txt+"\" class=\"center\">\n"
 
 def make_style(Back_color,Head_col,Font_style,Font_color):
     """

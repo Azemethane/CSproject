@@ -35,7 +35,7 @@ def write_html(Title,style_temp,paras,site_name,links):
     final_html.write(make_title(Title))
     final_html.write("<hr/>\n")
     #This if statement checks the length of the links dict
-    #and if its greater than zero it will add links to the other sites(as well as itself)
+    #and if it is greater than zero, it will add links to the other sites(as well as itself)
     if len(links)>0:
         final_html.write("<p align=\"center\">\n")
         #This for loop goes through the dictionary links and writes the name and files accordingly

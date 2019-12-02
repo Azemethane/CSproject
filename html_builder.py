@@ -6,13 +6,13 @@ Nicholas Faber
 import sys
 import questions
 import create_txt
-import create_html
+import write_html
 from dataclasses import dataclass
 #PARAS is used by wizard mode and is a list of paragraphs
 PARAS=[]
 
 #SITES is used by website mode and is a dictionary with the keys as site names and the values a list with
-#[0] being the name of the sites source file(file.html) and [1] being the list of paragraphs for that site
+#[0] being the name of the sites source filename(used for links) and [1] being the list of paragraphs for that site
 SITES={}
 
 #This dataclass is used for both wizard and website mode, it is used to represent each paragraph of the sites
@@ -38,7 +38,7 @@ def wizard_mode():
         #list of the current paragraph
         while img_chk=="" or img_chk=="yes":
             new_img=input("Image file name:")
-            new_para.img.append(new_img)
+            new_para.img.append("images/"+new_img)
             img_chk=input("Do you want to add another image?")
         #The completed paragraph is added to the list
         PARAS.append(new_para)
@@ -58,7 +58,7 @@ def site_mode():
         #And since the first one is always the title we skip it
         for txt in site_paras[1:]:
             new_para=paragraph("","",[])
-            #This nested for loop goes through each line (the nested list) of the paragraph
+            #This nested for loop goes through each line (each index of the list) of the paragraph
             #And depending on the line it is added to the structure of the current paragraph
             for string in txt[1:]:
                 if string=="":
@@ -95,7 +95,7 @@ def sep_paras(file_name):
     return fixed_paras
 
 def main():
-    #If the command line contains a txt file run website mode, otherwise start up wizard mode
+    #If the command line contains a txt file the code runs website mode, otherwise it starts up wizard mode
     if len(sys.argv)>1:
         back_color = questions.bck_color()
         font = questions.fnt_choice()
@@ -104,7 +104,7 @@ def main():
         style_temp = create_txt.make_style(back_color, head_color, font, para_color)
         site_mode()
         for x in SITES:
-            create_html.write_html(x,style_temp,SITES[x][1],SITES[x][0],SITES)
+            write_html.write_html(x,style_temp,SITES[x][1],SITES[x][0],SITES)
     else:
         title_name = questions.title()
         back_color = questions.bck_color()
@@ -113,6 +113,6 @@ def main():
         head_color = questions.head_style()
         style_temp = create_txt.make_style(back_color, head_color, font, para_color)
         wizard_mode()
-        create_html.write_html(title_name, style_temp, PARAS,"index",[])
+        write_html.write_html(title_name, style_temp, PARAS,"index",[])
 
 main()
