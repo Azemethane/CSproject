@@ -2,6 +2,12 @@
 Nicholas Faber
 11/29/2019
 
+
+NOTE: for images I was not sure what to do for when you want to call it, so when you want an image in wizard mode
+the code will look for it in the images folder. And for website mode just make it like images/img.jpg like it was in the
+examples
+
+
 """
 import sys
 import questions

@@ -25,21 +25,20 @@ COLORS={'peachpuff', 'slateblue', 'powderblue', 'lightcyan', 'chartreuse', 'mocc
         'papayawhip', 'green', 'lightgoldenrodyellow', 'mediumturquoise', 'steelblue', 'lightgray', 'lightgrey',
         'beige', 'palegoldenrod', 'darkgray', 'white', 'ghostwhite', 'dodgerblue', 'greenyellow', 'dimgrey',
         'darkorchid'}
-VALIDHEX={"#","0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
+VALIDHEX={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
           "Q","R","S","T","U","V","W","X","Y","Z"}
 
 def check_valid(str):
     """
-    This function uses recursion to test if the colors inputed by the user are valid
+    This function uses recursion to test if the colors input by the user are valid
     :param str:
     :return:
     """
     if str[0]=="#" and len(str)==7:
-        for ch in str:
+        for ch in str[1:]:
             if ch.upper() not in VALIDHEX:
                 str = input("Please enter a valid color")
                 return check_valid(str)
-                break
     elif str[0]=="#" and len(str)!=7:
         str = input("Please enter a valid color")
         return check_valid(str)
